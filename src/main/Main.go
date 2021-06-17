@@ -136,6 +136,95 @@ func main() {
 	swapInt(&qq, &ww)
 	fmt.Println(qq, ww)
 
+	type Books struct {
+		title   string
+		author  string
+		subject string
+		bookId  int
+	}
+
+	fmt.Println(Books{"go语言", "张三", "语文", 1232322222222})
+	fmt.Println(Books{title: "Go 语言", author: "www.runoob.com", subject: "Go 语言教程", bookId: 6495407})
+	fmt.Println(Books{title: "Go 语言", author: "www.runoob.com"})
+
+	var book1 Books
+	book1.bookId = 213
+	book1.author = "asdasdsdsdsad"
+	book1.title = "dsafdaf"
+	book1.subject = "adsfdsfadsf"
+	book1.title = "wyg"
+
+	fmt.Printf( "Book 1 title : %s\n", book1.title)
+	fmt.Printf( "Book 1 author : %s\n", book1.author)
+	fmt.Printf( "Book 1 subject : %s\n", book1.subject)
+	fmt.Printf( "Book 1 book_id : %d\n", book1.bookId)
+
+	printBook := func(book *Books) {
+		fmt.Printf( "Book title : %s\n", book.title)
+		fmt.Printf( "Book author : %s\n", book.author)
+		fmt.Printf( "Book subject : %s\n", book.subject)
+		fmt.Printf( "Book book_id : %d\n", book.bookId)
+	}
+	printBook(&book1)
+	// 切片
+	var numbers1 = make([] int, 3, 5)
+	fmt.Printf("len=%d cap=%d slice=%v\n", len(numbers1), cap(numbers1), numbers1)
+
+	printSlice := func(x[] int) {
+		fmt.Printf("len=%d cap=%d slice=%v\n", len(x), cap(x), x)
+	}
+
+	/* 创建切片 */
+	numbers := []int{0,1,2,3,4,5,6,7,8}
+	printSlice(numbers)
+
+	/* 打印原始切片 */
+	fmt.Println("numbers ==", numbers)
+
+	/* 打印子切片从索引1(包含) 到索引4(不包含)*/
+	fmt.Println("numbers[1:4] ==", numbers[1:4])
+
+	/* 默认下限为 0*/
+	fmt.Println("numbers[:3] ==", numbers[:3])
+
+	/* 默认上限为 len(s)*/
+	fmt.Println("numbers[4:] ==", numbers[4:])
+
+	numbers11 := make([]int,0,5)
+	printSlice(numbers11)
+
+	/* 打印子切片从索引  0(包含) 到索引 2(不包含) */
+	number2 := numbers[:2]
+	printSlice(number2)
+
+	/* 打印子切片从索引 2(包含) 到索引 5(不包含) */
+	number3 := numbers[2:5]
+	printSlice(number3)
+
+
+	//这是我们使用range去求一个slice的和。使用数组跟这个很类似
+	nums := []int{2, 3, 4}
+	sum := 0
+	for _, num := range nums {
+		sum += num
+	}
+	fmt.Println("sum:", sum)
+	//在数组上使用range将传入index和值两个变量。上面那个例子我们不需要使用该元素的序号，所以我们使用空白符"_"省略了。有时侯我们确实需要知道它的索引。
+	for i, num := range nums {
+		if num == 3 {
+			fmt.Println("index:", i)
+		}
+	}
+	//range也可以用在map的键值对上。
+	kvs := map[string]string{"a": "apple", "b": "banana"}
+	for k, v := range kvs {
+		fmt.Printf("%s -> %s\n", k, v)
+	}
+	//range也可以用来枚举Unicode字符串。第一个参数是字符的索引，第二个是字符（Unicode的值）本身。
+	for i, c := range "go" {
+		fmt.Println(i, c)
+	}
+
 }
 var test int = 1999
 func max(num1, num2 int) int  {
