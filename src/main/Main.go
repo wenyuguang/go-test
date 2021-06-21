@@ -225,6 +225,28 @@ func main() {
 		fmt.Println(i, c)
 	}
 
+	var testMap map[string]string
+	testMap = make(map[string]string)
+	testMap [ "1" ] = "1231231"
+	testMap [ "2" ] = "12312311111111"
+
+	for t := range testMap{
+		fmt.Println(t, testMap[t])
+	}
+
+	delete(testMap, "1")
+	for t := range testMap{
+		fmt.Println(t, testMap[t])
+	}
+
+	var phone Phone
+
+	phone = new(NokiaPhone)
+	phone.call()
+
+	phone = new(IPhone)
+	phone.call()
+
 }
 var test int = 1999
 func max(num1, num2 int) int  {
@@ -243,4 +265,23 @@ func swap(x, y string) (string, string) {
 
 func swap1(x,y,z string) (string, string, string) {
 	return y, x, z
+}
+
+type Phone interface {
+	call()
+}
+
+type NokiaPhone struct {
+
+}
+type IPhone struct {
+
+}
+
+func (nokiaPhone NokiaPhone) call() {
+	fmt.Println("I am Nokia, I can call you!")
+}
+
+func (iphone IPhone) call() {
+	fmt.Println("I am Iphone, I can call you!")
 }
